@@ -415,7 +415,7 @@ export const mockSupabase = {
       order: (column: string, { ascending = true } = {}) => ({
         eq: (column: string, value: any) => ({
           then: (callback: any) => {
-            let data = mockQuestions;
+            let data: any[] = mockQuestions;
             if (table === 'topics') {
               data = mockTopics;
             }
@@ -426,26 +426,26 @@ export const mockSupabase = {
           }
         }),
         then: (callback: any) => {
-          let data = table === 'topics' ? mockTopics : mockQuestions;
+          const data: any[] = table === 'topics' ? mockTopics : mockQuestions;
           return Promise.resolve({ data, error: null });
         }
       }),
       eq: (column: string, value: any) => ({
         then: (callback: any) => {
-          let data = table === 'topics' ? mockTopics : mockQuestions;
+          let data: any[] = table === 'topics' ? mockTopics : mockQuestions;
           data = data.filter((q: any) => q[column as keyof typeof q] === value);
           return Promise.resolve({ data, error: null });
         },
         order: () => ({
           then: (callback: any) => {
-            let data = table === 'topics' ? mockTopics : mockQuestions;
+            let data: any[] = table === 'topics' ? mockTopics : mockQuestions;
             data = data.filter((q: any) => q[column as keyof typeof q] === value);
             return Promise.resolve({ data, error: null });
           }
         })
       }),
       then: (callback: any) => {
-        const data = table === 'topics' ? mockTopics : mockQuestions;
+        const data: any[] = table === 'topics' ? mockTopics : mockQuestions;
         return Promise.resolve({ data, error: null });
       }
     })
