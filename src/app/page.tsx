@@ -388,7 +388,6 @@ car2.setElectric(true);`);
                   fontLigatures: true,
                   padding: { top: 16, bottom: 16 },
                   renderLineHighlight: 'all',
-                  lineHighlightBackground: '#1e293b',
                   suggestOnTriggerCharacters: true,
                   quickSuggestions: true,
                 }}
