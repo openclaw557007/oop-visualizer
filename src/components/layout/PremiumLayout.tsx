@@ -69,40 +69,40 @@ const navigationItems: NavItem[] = [
     id: "dashboard",
     label: "Dashboard",
     href: "/",
-    icon: <Home className="w-5 h-5" />,
+    icon: <Home className="w-7 h-7" />,
   },
   {
     id: "four-pillars",
     label: "Four Pillars",
     href: "#pillars",
-    icon: <Layers className="w-5 h-5" />,
+    icon: <Layers className="w-7 h-7" />,
     children: [
       {
         id: "encapsulation",
         label: "Encapsulation",
         href: "/pillars/encapsulation",
-        icon: <Shield className="w-4 h-4" />,
+        icon: <Shield className="w-8 h-8" />,
         progress: 65,
       },
       {
         id: "inheritance",
         label: "Inheritance",
         href: "/pillars/inheritance",
-        icon: <GitBranch className="w-4 h-4" />,
+        icon: <GitBranch className="w-8 h-8" />,
         progress: 40,
       },
       {
         id: "polymorphism",
         label: "Polymorphism",
         href: "/pillars/polymorphism",
-        icon: <Box className="w-4 h-4" />,
+        icon: <Box className="w-8 h-8" />,
         progress: 20,
       },
       {
         id: "abstraction",
         label: "Abstraction",
         href: "/pillars/abstraction",
-        icon: <Zap className="w-4 h-4" />,
+        icon: <Zap className="w-8 h-8" />,
         progress: 10,
       },
     ],
@@ -111,14 +111,14 @@ const navigationItems: NavItem[] = [
     id: "practice",
     label: "Practice Arena",
     href: "/practice",
-    icon: <Target className="w-5 h-5" />,
+    icon: <Target className="w-7 h-7" />,
     badge: "New",
   },
   {
     id: "progress",
     label: "Progress & Stats",
     href: "/progress",
-    icon: <BarChart3 className="w-5 h-5" />,
+    icon: <BarChart3 className="w-7 h-7" />,
   },
 ];
 
@@ -160,14 +160,14 @@ const UserProgressIndicator: React.FC<{ progress: UserProgress; collapsed?: bool
     return (
       <div className="flex flex-col items-center gap-2 p-2">
         <div className="relative">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-sm">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
             {progress.level}
           </div>
           <div className="absolute -bottom-1 -right-1 bg-orange-500 rounded-full p-0.5">
-            <Flame className="w-3 h-3 text-white" />
+            <Flame className="w-5 h-5 text-white" />
           </div>
         </div>
-        <span className="text-xs text-gray-400">{progress.streak}</span>
+        <span className="text-base text-gray-400">{progress.streak}</span>
       </div>
     );
   }
@@ -188,13 +188,13 @@ const UserProgressIndicator: React.FC<{ progress: UserProgress; collapsed?: bool
             transition={{ duration: 2, repeat: Infinity }}
             className="absolute -bottom-1 -right-1 bg-orange-500 rounded-full p-1"
           >
-            <Flame className="w-3 h-3 text-white" />
+            <Flame className="w-5 h-5 text-white" />
           </motion.div>
         </div>
         <div className="flex-1">
           <div className="flex items-center justify-between">
-            <span className="text-sm font-semibold text-white">Level {progress.level}</span>
-            <span className="text-xs text-gray-400">{progress.xp}/{progress.maxXp} XP</span>
+            <span className="text-lg font-semibold text-white">Level {progress.level}</span>
+            <span className="text-base text-gray-400">{progress.xp}/{progress.maxXp} XP</span>
           </div>
           <div className="mt-1 h-2 bg-slate-700 rounded-full overflow-hidden">
             <motion.div
@@ -206,9 +206,9 @@ const UserProgressIndicator: React.FC<{ progress: UserProgress; collapsed?: bool
           </div>
         </div>
       </div>
-      <div className="flex items-center justify-between text-xs">
+      <div className="flex items-center justify-between text-base">
         <div className="flex items-center gap-1 text-orange-400">
-          <Flame className="w-3 h-3" />
+          <Flame className="w-5 h-5" />
           <span>{progress.streak} day streak</span>
         </div>
         <div className="text-gray-400">
@@ -240,9 +240,9 @@ const Breadcrumb: React.FC = () => {
   if (pathname === "/") return null;
 
   return (
-    <nav className="flex items-center gap-2 text-sm text-gray-400 mb-4">
+    <nav className="flex items-center gap-2 text-lg text-gray-400 mb-4">
       <Link href="/" className="hover:text-white transition-colors flex items-center gap-1">
-        <Home className="w-4 h-4" />
+        <Home className="w-8 h-8" />
         <span className="hidden sm:inline">Home</span>
       </Link>
       {pathSegments.map((segment, index) => {
@@ -251,7 +251,7 @@ const Breadcrumb: React.FC = () => {
 
         return (
           <React.Fragment key={segment}>
-            <ChevronRight className="w-4 h-4 text-gray-600" />
+            <ChevronRight className="w-8 h-8 text-gray-600" />
             {isLast ? (
               <span className="text-white font-medium">{getBreadcrumbLabel(segment)}</span>
             ) : (
@@ -297,9 +297,9 @@ const NavItemComponent: React.FC<{
       <span className={isActive ? "text-blue-400" : ""}>{item.icon}</span>
       {!collapsed && (
         <>
-          <span className="flex-1 text-sm font-medium">{item.label}</span>
+          <span className="flex-1 text-lg font-medium">{item.label}</span>
           {item.badge && (
-            <span className="px-2 py-0.5 text-xs bg-green-500/20 text-green-400 rounded-full">
+            <span className="px-2 py-0.5 text-base bg-green-500/20 text-green-400 rounded-full">
               {item.badge}
             </span>
           )}
@@ -316,7 +316,7 @@ const NavItemComponent: React.FC<{
               animate={{ rotate: expanded ? 180 : 0 }}
               transition={{ duration: 0.2 }}
             >
-              <ChevronDown className="w-4 h-4" />
+              <ChevronDown className="w-8 h-8" />
             </motion.div>
           )}
         </>
@@ -332,7 +332,7 @@ const NavItemComponent: React.FC<{
         </Link>
         {/* Tooltip for collapsed state */}
         <div className="absolute left-full top-0 ml-2 w-48 bg-slate-800 rounded-xl shadow-2xl border border-slate-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 py-2">
-          <div className="px-3 py-2 text-sm font-semibold text-white border-b border-slate-700">
+          <div className="px-3 py-2 text-lg font-semibold text-white border-b border-slate-700">
             {item.label}
           </div>
           {item.children?.map((child) => (
@@ -340,7 +340,7 @@ const NavItemComponent: React.FC<{
               key={child.id}
               href={child.href}
               className={`
-                flex items-center gap-2 px-3 py-2 text-sm transition-colors
+                flex items-center gap-2 px-3 py-2 text-lg transition-colors
                 ${pathname === child.href ? "text-blue-400 bg-blue-500/10" : "text-gray-400 hover:text-white hover:bg-white/5"}
               `}
             >
@@ -391,9 +391,9 @@ const NavItemComponent: React.FC<{
                     `}
                   >
                     {child.icon}
-                    <span className="flex-1 text-sm">{child.label}</span>
+                    <span className="flex-1 text-lg">{child.label}</span>
                     {child.progress !== undefined && (
-                      <span className="text-xs text-gray-600">{child.progress}%</span>
+                      <span className="text-base text-gray-600">{child.progress}%</span>
                     )}
                   </div>
                 </Link>
@@ -415,7 +415,7 @@ const Sidebar: React.FC<{
   return (
     <motion.aside
       initial={false}
-      animate={{ width: collapsed ? 80 : 280 }}
+      animate={{ width: collapsed ? 100 : 340 }}
       transition={{ duration: 0.3, ease: "easeInOut" }}
       className="
         fixed left-0 top-0 h-screen z-40
@@ -428,7 +428,7 @@ const Sidebar: React.FC<{
       <div className="p-4 border-b border-slate-800/50">
         <Link href="/" className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
-            <Code2 className="w-6 h-6 text-white" />
+            <Code2 className="w-8 h-8 text-white" />
           </div>
           <AnimatePresence>
             {!collapsed && (
@@ -439,7 +439,7 @@ const Sidebar: React.FC<{
                 className="flex flex-col"
               >
                 <span className="text-lg font-bold text-white">OOP</span>
-                <span className="text-xs text-gray-400">Visualizer</span>
+                <span className="text-base text-gray-400">Visualizer</span>
               </motion.div>
             )}
           </AnimatePresence>
@@ -476,9 +476,9 @@ const Sidebar: React.FC<{
             animate={{ rotate: collapsed ? 180 : 0 }}
             transition={{ duration: 0.2 }}
           >
-            {collapsed ? <ChevronRight className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {collapsed ? <ChevronRight className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
           </motion.div>
-          {!collapsed && <span className="text-sm font-medium">Collapse</span>}
+          {!collapsed && <span className="text-lg font-medium">Collapse</span>}
         </button>
       </div>
     </motion.aside>
@@ -498,11 +498,11 @@ const MobileHeader: React.FC<{
             onClick={onMenuToggle}
             className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
           >
-            <Menu className="w-6 h-6" />
+            <Menu className="w-8 h-8" />
           </button>
           <Link href="/" className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-              <Code2 className="w-5 h-5 text-white" />
+              <Code2 className="w-7 h-7 text-white" />
             </div>
             <span className="text-lg font-bold text-white">OOP</span>
           </Link>
@@ -511,10 +511,10 @@ const MobileHeader: React.FC<{
         {/* Mobile Progress Indicator */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1 text-orange-400">
-            <Flame className="w-4 h-4" />
-            <span className="text-sm font-semibold">{userProgress.streak}</span>
+            <Flame className="w-8 h-8" />
+            <span className="text-lg font-semibold">{userProgress.streak}</span>
           </div>
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-sm font-bold">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white text-lg font-bold">
             {userProgress.level}
           </div>
         </div>
@@ -555,18 +555,18 @@ const MobileMenu: React.FC<{
               <div className="flex items-center justify-between p-4 border-b border-slate-800">
                 <Link href="/" className="flex items-center gap-3" onClick={onClose}>
                   <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-                    <Code2 className="w-6 h-6 text-white" />
+                    <Code2 className="w-8 h-8 text-white" />
                   </div>
                   <div className="flex flex-col">
                     <span className="text-lg font-bold text-white">OOP Visualizer</span>
-                    <span className="text-xs text-gray-400">Master Java OOP</span>
+                    <span className="text-base text-gray-400">Master Java OOP</span>
                   </div>
                 </Link>
                 <button
                   onClick={onClose}
                   className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
                 >
-                  <X className="w-6 h-6" />
+                  <X className="w-8 h-8" />
                 </button>
               </div>
 
@@ -587,8 +587,8 @@ const MobileMenu: React.FC<{
               {/* Footer */}
               <div className="p-4 border-t border-slate-800">
                 <div className="flex items-center gap-3 text-gray-400">
-                  <GraduationCap className="w-5 h-5" />
-                  <span className="text-sm">Keep learning daily!</span>
+                  <GraduationCap className="w-7 h-7" />
+                  <span className="text-lg">Keep learning daily!</span>
                 </div>
               </div>
             </div>
@@ -607,23 +607,23 @@ const Footer: React.FC = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
-              <Code2 className="w-4 h-4 text-white" />
+              <Code2 className="w-8 h-8 text-white" />
             </div>
             <div>
               <span className="text-white font-semibold">OOP Visualizer</span>
-              <p className="text-xs text-gray-500">Interactive Java OOP Learning</p>
+              <p className="text-base text-gray-500">Interactive Java OOP Learning</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-6 text-sm text-gray-400">
+          <div className="flex items-center gap-6 text-lg text-gray-400">
             <Link href="/" className="hover:text-white transition-colors">Home</Link>
             <Link href="/practice" className="hover:text-white transition-colors">Practice</Link>
             <Link href="/progress" className="hover:text-white transition-colors">Progress</Link>
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 text-xs text-gray-500">
-              <BookOpen className="w-4 h-4" />
+            <div className="flex items-center gap-2 text-base text-gray-500">
+              <BookOpen className="w-8 h-8" />
               <span>© 2024 OOP Visualizer</span>
             </div>
           </div>
