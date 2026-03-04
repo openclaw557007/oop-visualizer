@@ -161,7 +161,7 @@ car2.setElectric(true);`);
         position: { x: 370, y: 120 },
         data: {
           label: (
-            <div className="text-xs space-y-1">
+            <div className="text-sm space-y-1">
               <div className="font-bold text-indigo-600 dark:text-indigo-400 flex items-center gap-1">
                 <Code2 className="w-3 h-3" />
                 Class: {className}
@@ -201,7 +201,7 @@ car2.setElectric(true);`);
           position: { x: 70, y: 180 + objIndex * 100 },
           data: {
             label: (
-              <div className="text-xs space-y-1">
+              <div className="text-sm space-y-1">
                 <div className="font-bold text-slate-700 dark:text-slate-200">{varName}</div>
                 <div className="text-slate-500 dark:text-slate-400">Type: {type}</div>
                 <div className="flex items-center gap-1 text-indigo-500">
@@ -236,7 +236,7 @@ car2.setElectric(true);`);
           position: { x: 370, y: 250 + objIndex * 120 },
           data: {
             label: (
-              <div className="text-xs space-y-1">
+              <div className="text-sm space-y-1">
                 <div className="font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
                   <Box className="w-3 h-3" />
                   Object: {className}@{varName}
@@ -314,7 +314,7 @@ car2.setElectric(true);`);
                 <h1 className="text-xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 dark:from-white dark:to-slate-300 bg-clip-text text-transparent">
                   OOP Visualizer
                 </h1>
-                <p className="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
+                <p className="text-sm text-slate-500 dark:text-slate-400 hidden sm:block">
                   Interactive Java Memory Explorer
                 </p>
               </div>
@@ -339,17 +339,17 @@ car2.setElectric(true);`);
       </motion.header>
 
       {/* Main Content */}
-      <main className="max-w-[1920px] mx-auto p-4 sm:p-6 lg:p-8">
+      <main className="max-w-[1920px] mx-auto p-4 sm:p-6 lg:p-8 pb-20">
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid lg:grid-cols-2 gap-6 h-[calc(100vh-8rem)]"
+          className="grid grid-cols-1 xl:grid-cols-2 gap-6"
         >
           {/* Left Panel - Code Editor */}
           <motion.div 
             variants={itemVariants}
-            className={`${glassCard} rounded-2xl overflow-hidden flex flex-col`}
+            className={`${glassCard} rounded-2xl overflow-hidden flex flex-col min-h-[500px] xl:min-h-[600px]`}
           >
             {/* Panel Header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200/50 dark:border-slate-700/50 bg-gradient-to-r from-slate-50/50 to-transparent dark:from-slate-800/50">
@@ -359,11 +359,11 @@ car2.setElectric(true);`);
                 </div>
                 <div>
                   <h2 className="font-semibold text-slate-800 dark:text-slate-200">Code Editor</h2>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Edit Java code to visualize</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">Edit Java code to visualize</p>
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <span className="px-2.5 py-1 text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-full border border-slate-200 dark:border-slate-700">
+                <span className="px-2.5 py-1 text-sm font-medium bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-full border border-slate-200 dark:border-slate-700">
                   Java
                 </span>
               </div>
@@ -401,7 +401,7 @@ car2.setElectric(true);`);
             </div>
 
             {/* Panel Footer */}
-            <div className="px-5 py-3 border-t border-slate-200/50 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/50 flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
+            <div className="px-5 py-3 border-t border-slate-200/50 dark:border-slate-700/50 bg-slate-50/50 dark:bg-slate-800/50 flex items-center justify-between text-sm text-slate-500 dark:text-slate-400">
               <div className="flex items-center gap-4">
                 <span>{javaCode.split('\n').length} lines</span>
                 <span>{javaCode.length} characters</span>
@@ -416,7 +416,7 @@ car2.setElectric(true);`);
           {/* Right Panel - Visualization */}
           <motion.div 
             variants={itemVariants}
-            className={`${glassCard} rounded-2xl overflow-hidden flex flex-col`}
+            className={`${glassCard} rounded-2xl overflow-hidden flex flex-col min-h-[500px] xl:min-h-[600px]`}
           >
             {/* Panel Header */}
             <div className="flex items-center justify-between px-5 py-4 border-b border-slate-200/50 dark:border-slate-700/50 bg-gradient-to-r from-slate-50/50 to-transparent dark:from-slate-800/50">
@@ -426,12 +426,12 @@ car2.setElectric(true);`);
                 </div>
                 <div>
                   <h2 className="font-semibold text-slate-800 dark:text-slate-200">Memory Visualization</h2>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Stack & Heap representation</p>
+                  <p className="text-sm text-slate-500 dark:text-slate-400">Stack & Heap representation</p>
                 </div>
               </div>
               
               {/* Legend */}
-              <div className="hidden sm:flex items-center gap-3 text-xs">
+              <div className="hidden sm:flex items-center gap-3 text-sm">
                 <div className="flex items-center gap-1.5">
                   <div className="w-3 h-3 rounded bg-gradient-to-br from-indigo-200 to-indigo-300 border border-indigo-400" />
                   <span className="text-slate-600 dark:text-slate-400">Stack</span>
@@ -472,7 +472,7 @@ car2.setElectric(true);`);
                   <motion.div 
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-3 border border-slate-200/50 dark:border-slate-700/50 shadow-lg text-xs space-y-2"
+                    className="bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm rounded-lg p-3 border border-slate-200/50 dark:border-slate-700/50 shadow-lg text-sm space-y-2"
                   >
                     <div className="font-semibold text-slate-700 dark:text-slate-200 mb-2">Memory Layout</div>
                     <div className="flex items-center gap-2">
