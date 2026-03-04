@@ -1,30 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import Editor from '@monaco-editor/react';
-
-// Initialize Supabase client
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'http://localhost:54321';
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'your-anon-key';
-const supabase = createClient(supabaseUrl, supabaseKey);
-
-interface Topic {
-  id: string;
-  title: string;
-  description: string;
-}
-
-interface PracticeQuestion {
-  id: string;
-  topic_id: string;
-  difficulty_level: 'easy' | 'medium' | 'hard';
-  code_snippet: string | null;
-  question_text: string;
-  correct_answer: string;
-  explanation: string | null;
-  topics: Topic;
-}
+import { mockTopics, mockQuestions, Topic, PracticeQuestion } from '@/lib/mockDb';
 
 export default function PracticeArena() {
   const [topics, setTopics] = useState<Topic[]>([]);
@@ -36,60 +14,26 @@ export default function PracticeArena() {
   const [showResult, setShowResult] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchTopics();
-    fetchQuestions();
+    // Load data from mock database
+    setTopics(mockTopics);
+    setQuestions(mockQuestions);
+    setLoading(false);
   }, []);
 
-  const fetchTopics = async () => {
-    try {
-      const { data, error } = await supabase
-        .from('topics')
-        .select('*')
-        .order('title');
-      
-      if (error) throw error;
-      setTopics(data || []);
-    } catch (err) {
-      console.error('Error fetching topics:', err);
-      setError('Failed to load topics');
-    }
-  };
-
-  const fetchQuestions = async () => {
-    try {
-      setLoading(true);
-      let query = supabase
-        .from('practice_questions')
-        .select(`
-          *,
-          topics (*)
-        `);
-      
-      if (selectedTopic !== 'all') {
-        query = query.eq('topic_id', selectedTopic);
-      }
-      
-      if (selectedDifficulty !== 'all') {
-        query = query.eq('difficulty_level', selectedDifficulty);
-      }
-      
-      const { data, error } = await query.order('created_at', { ascending: false });
-      
-      if (error) throw error;
-      setQuestions(data || []);
-    } catch (err) {
-      console.error('Error fetching questions:', err);
-      setError('Failed to load questions');
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const handleFilterChange = () => {
-    fetchQuestions();
+    let filtered = [...mockQuestions];
+    
+    if (selectedTopic !== 'all') {
+      filtered = filtered.filter(q => q.topic_id === selectedTopic);
+    }
+    
+    if (selectedDifficulty !== 'all') {
+      filtered = filtered.filter(q => q.difficulty_level === selectedDifficulty);
+    }
+    
+    setQuestions(filtered);
   };
 
   const selectQuestion = (question: PracticeQuestion) => {
@@ -102,7 +46,13 @@ export default function PracticeArena() {
   const submitAnswer = () => {
     if (!currentQuestion) return;
     
-    const correct = userAnswer.trim().toLowerCase() === currentQuestion.correct_answer.trim().toLowerCase();
+    const userAns = userAnswer.trim().toLowerCase();
+    const correctAns = currentQuestion.correct_answer.trim().toLowerCase();
+    
+    // Support multiple correct answers separated by comma
+    const correctVariants = correctAns.split(',').map(s => s.trim());
+    const correct = correctVariants.some(variant => userAns.includes(variant));
+    
     setIsCorrect(correct);
     setShowResult(true);
   };
@@ -165,7 +115,7 @@ export default function PracticeArena() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Question List */}
           <div className="lg:col-span-1">
-            <h2 className="text-xl font-semibold mb-4 text-gray-300">Questions</h2>
+            <h2 className="text-xl font-semibold mb-4 text-gray-300">Questions ({questions.length})</h2>
             
             {loading ? (
               <div className="text-gray-400">Loading questions...</div>
@@ -279,7 +229,13 @@ export default function PracticeArena() {
               </div>
             ) : (
               <div className="bg-gray-800 rounded-lg border border-gray-700 p-8 text-center">
-                <p className="text-gray-400">Select a question from the list to begin practicing</p>
+                <p className="text-gray-400 mb-4">Select a question from the list to begin practicing</p>
+                <div className="text-sm text-gray-500">
+                  <p>✓ 20 practice questions available</p>
+                  <p>✓ Covers all 10 Java OOP topics</p>
+                  <p>✓ Interactive code snippets</p>
+                  <p>✓ Instant feedback with explanations</p>
+                </div>
               </div>
             )}
           </div>
