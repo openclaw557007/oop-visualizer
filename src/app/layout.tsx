@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { PremiumLayout } from "@/components/layout/PremiumLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,8 +14,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Java OOP Visualizer",
-  description: "Interactive visualization of Java Object-Oriented Programming concepts",
+  title: "OOP Visualizer - Master Java Object-Oriented Programming",
+  description: "Interactive visualization of Java Object-Oriented Programming concepts. Learn Encapsulation, Inheritance, Polymorphism, and Abstraction through interactive lessons and practice.",
+  keywords: ["Java", "OOP", "Object-Oriented Programming", "Encapsulation", "Inheritance", "Polymorphism", "Abstraction", "Learn to Code"],
+  authors: [{ name: "OOP Visualizer" }],
+  openGraph: {
+    title: "OOP Visualizer - Master Java OOP",
+    description: "Interactive visualization of Java Object-Oriented Programming concepts",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -23,23 +31,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-950 text-white`}
       >
-        <nav className="bg-gray-800 text-white p-4">
-          <div className="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="/" className="text-xl font-bold text-blue-400">OOP Visualizer</a>
-            <div className="flex gap-6">
-              <a href="/pillars/encapsulation" className="hover:text-blue-400 transition">Encapsulation</a>
-              <a href="/pillars/inheritance" className="hover:text-blue-400 transition">Inheritance</a>
-              <a href="/pillars/polymorphism" className="hover:text-blue-400 transition">Polymorphism</a>
-              <a href="/pillars/abstraction" className="hover:text-blue-400 transition">Abstraction</a>
-              <a href="/practice" className="hover:text-green-400 transition font-medium">Practice Arena</a>
-            </div>
-          </div>
-        </nav>
-        {children}
+        <PremiumLayout>
+          {children}
+        </PremiumLayout>
       </body>
     </html>
   );
