@@ -353,14 +353,14 @@ car2.setElectric(true);`);
         </div>
       </motion.header>
 
-      {/* Main Content - adjusts margin based on sidebar state */}
-      <main className={`transition-all duration-300 ${sidebarHidden ? 'ml-0' : 'lg:ml-[80px] xl:ml-[280px]'} p-4 sm:p-6 lg:p-8 pb-20 flex justify-center`}>
-        <div className="w-full max-w-[1400px]">
+      {/* Main Content - Full width centered when sidebar hidden */}
+      <main className={`transition-all duration-300 ${sidebarHidden ? 'ml-0' : 'ml-[80px]'} p-4 sm:p-6 lg:p-8 pb-20 flex justify-center`}>
+        <div className="w-full max-w-[1600px] flex flex-col items-center">
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 xl:grid-cols-2 gap-6"
+          className="grid grid-cols-1 xl:grid-cols-2 gap-8 w-full max-w-[1400px] mx-auto"
         >
           {/* Left Panel - Code Editor */}
           <motion.div 
