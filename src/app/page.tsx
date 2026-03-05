@@ -339,7 +339,8 @@ car2.setElectric(true);`);
       </motion.header>
 
       {/* Main Content */}
-      <main className="max-w-[1920px] mx-auto p-4 sm:p-6 lg:p-8 pb-20">
+      <main className="lg:ml-[340px] xl:ml-[360px] p-4 sm:p-6 lg:p-8 pb-20 flex justify-center">
+        <div className="w-full max-w-[1200px]">
         <motion.div 
           variants={containerVariants}
           initial="hidden"
@@ -541,6 +542,7 @@ car2.setElectric(true);`);
             </motion.div>
           ))}
         </motion.div>
+        </div>
       </main>
     </div>
   );
