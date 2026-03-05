@@ -500,6 +500,7 @@ const Sidebar: React.FC<{
         </button>
       </div>
     </motion.aside>
+    </>
   );
 };
 
