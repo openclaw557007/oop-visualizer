@@ -706,8 +706,8 @@ export const PremiumLayout: React.FC<PremiumLayoutProps> = ({ children }) => {
       }}
     >
       <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
-        {/* Desktop Sidebar */}
-        <div className="hidden lg:block">
+        {/* Desktop Sidebar - Hidden by default for centered content */}
+        <div className="hidden">
           <Sidebar
             collapsed={sidebarCollapsed}
             userProgress={userProgress}
@@ -725,21 +725,20 @@ export const PremiumLayout: React.FC<PremiumLayoutProps> = ({ children }) => {
           userProgress={userProgress}
         />
 
-        {/* Main Content Area */}
+        {/* Main Content Area - Always centered, no sidebar margin */}
         <motion.main
           initial={false}
           animate={{
-            marginLeft: sidebarCollapsed ? 80 : 280,
+            marginLeft: 0,
           }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
           className="
             min-h-screen
-            lg:ml-0
+            w-full
             pt-16 lg:pt-0
-            transition-all duration-300
           "
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
+          <div className="w-full max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
             {/* Breadcrumb Navigation */}
             <Breadcrumb />
 

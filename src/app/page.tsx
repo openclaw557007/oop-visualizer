@@ -353,14 +353,15 @@ car2.setElectric(true);`);
         </div>
       </motion.header>
 
-      {/* Main Content - Full width centered when sidebar hidden */}
-      <main className={`transition-all duration-300 ${sidebarHidden ? 'ml-0' : 'ml-[80px]'} p-4 sm:p-6 lg:p-8 pb-20 flex justify-center`}>
-        <div className="w-full max-w-[1600px] flex flex-col items-center">
+      {/* Main Content - Aggressively centered */}
+      <main className="w-full min-h-screen p-4 sm:p-6 lg:p-8 pb-20">
+        <div className="w-full flex flex-col items-center justify-center">
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 xl:grid-cols-2 gap-8 w-full max-w-[1400px] mx-auto"
+          className="grid grid-cols-1 xl:grid-cols-2 gap-8 w-full max-w-[1400px]"
+          style={{ margin: '0 auto' }}
         >
           {/* Left Panel - Code Editor */}
           <motion.div 

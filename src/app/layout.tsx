@@ -33,10 +33,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-950 text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-950 text-white overflow-x-hidden`}
       >
         <PremiumLayout>
-          {children}
+          <div className="w-full flex justify-center">
+            {children}
+          </div>
         </PremiumLayout>
       </body>
     </html>
