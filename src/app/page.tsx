@@ -332,6 +332,16 @@ car2.setElectric(true);`);
 
             {/* Actions - Mobile optimized */}
             <div className="flex items-center gap-2 sm:gap-3">
+              {/* Barishal Practice Link */}
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="/barishal/practice"
+                className="hidden sm:flex items-center gap-2 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all text-sm font-medium"
+              >
+                <span>🎓 Practice</span>
+              </motion.a>
+
               {/* Mobile Panel Toggle */}
               {isMobile && (
                 <motion.button
@@ -543,7 +553,7 @@ car2.setElectric(true);`);
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.5 }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 mt-4 sm:mt-8 w-full max-w-[1400px]"
+          className="grid grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-4 mt-4 sm:mt-8 w-full max-w-[1400px]"
         >
           {[
             { icon: Layers, title: 'Stack Memory', desc: 'Local variables & references', color: 'indigo' },
@@ -567,6 +577,23 @@ car2.setElectric(true);`);
               </div>
             </motion.div>
           ))}
+          
+          {/* Practice Arena Card */}
+          <motion.a
+            href="/barishal/practice"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.4 }}
+            className={`${glassCard} rounded-lg sm:rounded-xl p-3 sm:p-4 flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 hover:shadow-lg transition-all cursor-pointer`}
+          >
+            <div className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-blue-100 dark:bg-blue-900/30">
+              <span className="text-lg sm:text-xl">🎓</span>
+            </div>
+            <div>
+              <h3 className="text-sm sm:text-base font-semibold text-blue-700 dark:text-blue-300">Practice Arena</h3>
+              <p className="text-xs text-blue-600 dark:text-blue-400 hidden sm:block">100+ OOP questions</p>
+            </div>
+          </motion.a>
         </motion.div>
         </div>
       </main>
