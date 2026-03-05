@@ -59,7 +59,7 @@ const itemVariants = {
 const glassCard = "backdrop-blur-xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/50 dark:border-slate-700/50 shadow-lg shadow-slate-200/50 dark:shadow-slate-900/50";
 
 export default function OOPVisualizer() {
-  const [sidebarHidden, setSidebarHidden] = useState(false);
+  const [sidebarHidden, setSidebarHidden] = useState(true);
   
   const [javaCode, setJavaCode] = useState(`public class Car {
     private String brand = "Toyota";

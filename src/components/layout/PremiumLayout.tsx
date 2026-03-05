@@ -675,7 +675,7 @@ interface PremiumLayoutProps {
 }
 
 export const PremiumLayout: React.FC<PremiumLayoutProps> = ({ children }) => {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [userProgress] = useState<UserProgress>(defaultUserProgress);
 
