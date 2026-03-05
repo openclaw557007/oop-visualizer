@@ -345,7 +345,7 @@ car2.setElectric(true);`);
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 xl:grid-cols-2 gap-6"
+          className="grid grid-cols-1 xl:grid-cols-2 gap-6 justify-items-center"
         >
           {/* Left Panel - Code Editor */}
           <motion.div 
