@@ -413,17 +413,35 @@ const Sidebar: React.FC<{
   onToggle: () => void;
 }> = ({ collapsed, userProgress, onToggle }) => {
   return (
-    <motion.aside
-      initial={false}
-      animate={{ width: collapsed ? 100 : 340 }}
-      transition={{ duration: 0.3, ease: "easeInOut" }}
-      className="
-        fixed left-0 top-0 h-screen z-40
-        bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950
-        border-r border-slate-800/50
-        flex flex-col
-      "
-    >
+    <>
+      {/* Overlay backdrop when expanded on smaller screens */}
+      <AnimatePresence>
+        {!collapsed && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/20 z-30 lg:hidden"
+            onClick={onToggle}
+          />
+        )}
+      </AnimatePresence>
+
+      <motion.aside
+        initial={false}
+        animate={{ 
+          width: collapsed ? 80 : 280,
+          x: 0 
+        }}
+        transition={{ duration: 0.3, ease: "easeInOut" }}
+        className={`
+          fixed left-0 top-0 h-screen z-40
+          bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950
+          border-r border-slate-800/50
+          flex flex-col
+          shadow-2xl shadow-black/50
+        `}
+      >
       {/* Logo Section */}
       <div className="p-4 border-b border-slate-800/50">
         <Link href="/" className="flex items-center gap-3">

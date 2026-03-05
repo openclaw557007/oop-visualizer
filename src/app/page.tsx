@@ -14,7 +14,8 @@ import {
   Box,
   ArrowRightLeft,
   Cpu,
-  Info
+  Info,
+  Menu
 } from 'lucide-react';
 import 'reactflow/dist/style.css';
 
@@ -58,6 +59,8 @@ const itemVariants = {
 const glassCard = "backdrop-blur-xl bg-white/70 dark:bg-slate-900/70 border border-slate-200/50 dark:border-slate-700/50 shadow-lg shadow-slate-200/50 dark:shadow-slate-900/50";
 
 export default function OOPVisualizer() {
+  const [sidebarHidden, setSidebarHidden] = useState(false);
+  
   const [javaCode, setJavaCode] = useState(`public class Car {
     private String brand = "Toyota";
     private String color = "Red";
@@ -322,6 +325,18 @@ car2.setElectric(true);`);
 
             {/* Actions */}
             <div className="flex items-center gap-3">
+              {/* Sidebar Toggle */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setSidebarHidden(!sidebarHidden)}
+                className="flex items-center gap-2 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50 rounded-lg transition-all"
+                title={sidebarHidden ? "Show Sidebar" : "Hide Sidebar"}
+              >
+                <Menu className="w-5 h-5" />
+                <span className="hidden sm:inline text-sm">{sidebarHidden ? "Show Menu" : "Hide Menu"}</span>
+              </motion.button>
+              
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -339,7 +354,7 @@ car2.setElectric(true);`);
       </motion.header>
 
       {/* Main Content - adjusts margin based on sidebar state */}
-      <main className="transition-all duration-300 lg:ml-[100px] xl:ml-[340px] p-4 sm:p-6 lg:p-8 pb-20 flex justify-center">
+      <main className={`transition-all duration-300 ${sidebarHidden ? 'ml-0' : 'lg:ml-[80px] xl:ml-[280px]'} p-4 sm:p-6 lg:p-8 pb-20 flex justify-center`}>
         <div className="w-full max-w-[1400px]">
         <motion.div 
           variants={containerVariants}
