@@ -15,6 +15,7 @@ import {
   GraduationCap,
   ArrowRight
 } from 'lucide-react';
+import Editor from '@monaco-editor/react';
 import { mockTopics, mockQuestions, Topic, PracticeQuestion } from '@/lib/barishalDb';
 
 type Language = 'en' | 'bn';
